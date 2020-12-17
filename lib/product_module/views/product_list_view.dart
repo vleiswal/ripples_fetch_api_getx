@@ -36,7 +36,7 @@ class ProductListView extends StatelessWidget {
                               height: 100,
                               fit: BoxFit.fill,
                               color: AppColor.purpleColor,
-                              colorBlendMode: BlendMode.color,
+                              colorBlendMode: BlendMode.colorDodge,
                             ),
                           ),
                         ),
@@ -47,8 +47,7 @@ class ProductListView extends StatelessWidget {
                             children: [
                               Text(
                                 productController.productList[index].name,
-                                style: TextStyle(
-                                    fontSize: 18, color: AppColor.grey),
+                                style: TextStyle(fontSize: 18),
                               ),
                               Text(
                                 productController.productList[index].brand,
@@ -67,7 +66,7 @@ class ProductListView extends StatelessWidget {
                     ),
                     Container(
                       color: AppColor.grey200,
-                      height: 2,
+                      height: 3,
                     ),
                   ],
                 );
