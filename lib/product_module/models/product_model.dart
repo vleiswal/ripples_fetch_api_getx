@@ -1,7 +1,10 @@
 import 'dart:convert';
 
-List<ProductModel> productFromJson(String str) => List<ProductModel>;
-String productToJson(List<ProductModel> data) json.encode(List);
+List<ProductModel> productFromJson(String str) => List<ProductModel>.from(
+    json.decode(str).map((x) => ProductModel.productFromJson(x)));
+
+String productToJson(List<ProductModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.productToJson())));
 
 class ProductModel {
   ProductModel({
@@ -26,27 +29,28 @@ class ProductModel {
     this.productColors,
   });
 
-     int id;
-    String brand;
-    String name;
-    String price;
-    String priceSign;
-    String currency;
-    String imageLink;
-    String productLink;
-    String websiteLink;
-    String description;
-    dynamic rating;
-    String category;
-    String productType;
-    List<String> tagList;
-    DateTime createdAt;
-    DateTime updatedAt;
-    String productApiUrl;
-    String apiFeaturedImage;
-    List<ProductColor> productColors;
+  int id;
+  String brand;
+  String name;
+  String price;
+  String priceSign;
+  String currency;
+  String imageLink;
+  String productLink;
+  String websiteLink;
+  String description;
+  dynamic rating;
+  String category;
+  String productType;
+  List<String> tagList;
+  DateTime createdAt;
+  DateTime updatedAt;
+  String productApiUrl;
+  String apiFeaturedImage;
+  List<ProductColor> productColors;
 
-    factory ProductModel.productFromJson(Map<String, dynamic> json) => Welcome(
+  factory ProductModel.productFromJson(Map<String, dynamic> json) =>
+      ProductModel(
         id: json["id"],
         brand: json["brand"],
         name: json["name"],
@@ -65,10 +69,11 @@ class ProductModel {
         updatedAt: DateTime.parse(json["updated_at"]),
         productApiUrl: json["product_api_url"],
         apiFeaturedImage: json["api_featured_image"],
-        productColors: List<ProductColor>.from(json["product_colors"].map((x) => ProductColor.fromJson(x))),
-    );
+        productColors: List<ProductColor>.from(
+            json["product_colors"].map((x) => ProductColor.fromJson(x))),
+      );
 
-    Map<String, dynamic> productToJson() => {
+  Map<String, dynamic> productToJson() => {
         "id": id,
         "brand": brand,
         "name": name,
@@ -87,27 +92,27 @@ class ProductModel {
         "updated_at": updatedAt.toIso8601String(),
         "product_api_url": productApiUrl,
         "api_featured_image": apiFeaturedImage,
-        "product_colors": List<dynamic>.from(productColors.map((x) => x.toJson())),
-    };
+        "product_colors":
+            List<dynamic>.from(productColors.map((x) => x.toJson())),
+      };
 }
 
 class ProductColor {
-    ProductColor({
-        this.hexValue,
-        this.colourName,
-    });
+  ProductColor({
+    this.hexValue,
+    this.colourName,
+  });
 
-    String hexValue;
-    String colourName;
+  String hexValue;
+  String colourName;
 
-    factory ProductColor.fromJson(Map<String, dynamic> json) => ProductColor(
+  factory ProductColor.fromJson(Map<String, dynamic> json) => ProductColor(
         hexValue: json["hex_value"],
         colourName: json["colour_name"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "hex_value": hexValue,
         "colour_name": colourName,
-    };
+      };
 }
-
