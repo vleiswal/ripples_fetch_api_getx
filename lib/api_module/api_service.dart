@@ -7,7 +7,7 @@ class ApiService {
   static Future<List<ProductModel>> fetchProducts() async {
     var response = await client.get(
         'https://makeup-api.herokuapp.com/api/v1/products.json?brand=marienatie');
-    //http://makeup-api.herokuapp.com/api/v1/products.json?brand=colourpop
+    //http://makeup-api.herokuapp.com/api/v1/products.json?brand=colourpop // marienatie
 
     if (response.statusCode == 200) {
       var jsonString = response.body;
